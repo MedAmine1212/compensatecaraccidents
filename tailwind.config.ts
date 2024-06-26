@@ -1,20 +1,40 @@
-import type { Config } from "tailwindcss";
-
-const config: Config = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+module.exports = {
+  darkMode: 'class',
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
+    screens: {
+      '2xl': { max: '1535px' },
+
+      xl: { max: '1279px' },
+
+      lg: { max: '1023px' },
+
+      md: { max: '767px' },
+
+      sm: { max: '639px' },
+      xs: { max: '475px' },
+      tall: { raw: '(max-height: 800px)' },
+    },
     extend: {
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        'custom-gradient': 'linear-gradient(90deg, #243875 0%, #3668DA 100%)',
+      },
+      boxShadow: {
+        'custom-shadow': '0px 20px 60px 0px rgba(36, 56, 117, 0.30)',
+      },
+      colors: {
+        "darkbg": "#101828",
+        "primary": "#194185",
+        "subcolor": "#667085"
+
+      },
+      fontFamily: {
+        Montserrat: ['Montserrat', 'sans-serif'],
+        sans: ['Roboto', 'sans-serif'],
+        serif: ['Display', 'serif'],
+        poppins: ['Poppins', 'serif'],
       },
     },
   },
-  plugins: [],
-};
-export default config;
+  plugins: [require('@tailwindcss/forms'), require('tailwindcss-elevation')],
+}
