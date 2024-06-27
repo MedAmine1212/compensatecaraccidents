@@ -1,0 +1,164 @@
+[
+  {
+    "id": 1,
+    "question": "How were you hurt?",
+    "description": "Different types of accidents can lead to different compensation amounts. If you were in a recent automobile accident you are likely entitled to a higher settlement. The calculator will use this to maximize your claim estimate.",
+    "type": "grid",
+    "answers": [
+      {
+        "id": 1,
+        "answer": "Automobile accident",
+        "icon": "car",
+        "terminate": false,
+        "compensationAmount": "165,306"
+      },
+      {
+        "id": 2,
+        "answer": "Pedestrian or bicycle accident",
+        "icon": "bicycle",
+        "terminate": false,
+        "compensationAmount": "165,306"
+      },
+      {
+        "id": 3,
+        "answer": "Truck accident",
+        "icon": "truck",
+        "terminate": false,
+        "compensationAmount": "165,306"
+      },
+      {
+        "id": 4,
+        "answer": "Motorcycle accident",
+        "icon": "motorcycle",
+        "terminate": false,
+        "compensationAmount": "165,306"
+      },
+      {
+        "id": 5,
+        "answer": "Accident or injury at work",
+        "icon": "accident",
+        "terminate": false,
+        "compensationAmount": "165,306"
+      },
+      {
+        "id": 6,
+        "answer": "Medical Negligence",
+        "icon": "medical",
+        "terminate": false,
+        "compensationAmount": "165,306"
+      },
+      {
+        "id": 7,
+        "answer": "Fall or slip",
+        "icon": "fall",
+        "terminate": false,
+        "compensationAmount": "165,306"
+      },
+      {
+        "id": 8,
+        "answer": "Other accident or injury",
+        "icon": "other",
+        "terminate": false,
+        "compensationAmount": "165,306"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "question": "Did you have to go to the doctor?",
+    "description": "Medical visits can significantly impact your settlement value. Let us know if you sought treatment from your accident.",
+    "type": "grid",
+    "answers": [
+      {
+        "id": 1,
+        "answer": "Yes",
+        "icon": "doctor-icon",
+        "terminate": false
+      },
+      {
+        "id": 2,
+        "answer": "No",
+        "icon": "no-hand-icon",
+        "terminate": false
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "question": "Are you currently represented by an attorney?",
+    "description": "Having legal representation can change your options. Tell us if you already have a lawyer on your side.",
+    "type": "grid",
+    "answers": [
+      {
+        "id": 1,
+        "answer": "Yes",
+        "icon": "attorney-icon",
+        "terminate": true
+      },
+      {
+        "id": 2,
+        "answer": "No",
+        "icon": "no-hand-icon",
+        "terminate": false
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "question": "Were you at fault?",
+    "description": "You can be honest here. Determining fault is the best way to calculate settlement amounts. We need to know your perspective of the incident.",
+    "type": "grid",
+    "answers": [
+      {
+        "id": 1,
+        "answer": "Yes",
+        "icon": "fault-icon",
+        "terminate": true
+      },
+      {
+        "id": 2,
+        "answer": "No",
+        "icon": "no-fault-icon",
+        "terminate": false
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "question": "When did this accident happen?",
+    "description": "The more recent your accident, the more likely you can achieve a higher settlement. If you've been in an accident, don't delay in getting help.",
+    "type": "col",
+    "answers": [
+      {
+        "id": 1,
+        "answer": "Within 1 Week",
+        "icon": null,
+        "terminate": false
+      },
+      {
+        "id": 2,
+        "answer": "Within 1-3 Months",
+        "icon": null,
+        "terminate": false
+      },
+      {
+        "id": 3,
+        "answer": "Within 1 Year",
+        "icon": null,
+        "terminate": false
+      },
+      {
+        "id": 4,
+        "answer": "Within 2 Year",
+        "icon": null,
+        "terminate": true
+      },
+      {
+        "id": 5,
+        "answer": "Longer Than 2 Years",
+        "icon": null,
+        "terminate": true
+      }
+    ]
+  }
+]

@@ -33,12 +33,18 @@ export default function App({
         })
     }
     useEffect(() => {
-        setDarkMode(
-            !!(
-                localStorage.getItem('theme') &&
-                localStorage.getItem('theme') === 'dark'
-            ),
-        )
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        setDarkMode(mediaQuery.matches);
+
+        const handleChange = (e) => {
+            setDarkMode(e.matches);
+        };
+
+        mediaQuery.addEventListener('change', handleChange);
+
+        return () => {
+            mediaQuery.removeEventListener('change', handleChange);
+        };
     }, [])
 
     return (

@@ -8,73 +8,17 @@ html {
     font-family: 'DM Sans', sans-serif;
 }
 
-.scroller::-webkit-scrollbar {
-    width: 0.5rem;
+/* beutiful scrollbar */
+::-webkit-scrollbar {
+  width: 0.5rem;
 }
-.scroller2::-webkit-scrollbar {
-    width: 0.25rem;
+::-webkit-scrollbar-track {
+  background: #00000000;
 }
-
-@layer components {
-    .text-vertical {
-        writing-mode: vertical-rl;
-    }
-    .scroller::-webkit-scrollbar-track {
-        @apply bg-[#f1f1f1] dark:bg-transparent;
-    }
-    .scroller::-webkit-scrollbar-thumb {
-        border-radius: 0.5rem;
-    }
-    .scroller2::-webkit-scrollbar-track {
-        @apply bg-[#f1f1f1] dark:bg-transparent;
-    }
-    .scroller2::-webkit-scrollbar-thumb {
-        border-radius: 0.5rem;
-    }
-
-    .custom-shadow {
-        box-shadow: 0 0 4px #00000060;
-    }
-    .custom-dark-shadow {
-        box-shadow: 0 0 4px #ffffff60;
-    }
-    .custom-dark-shadow2 {
-        box-shadow: 0 0 5px #0000001c;
-    }
-    .notification-item-shadow {
-        box-shadow: 0 0 8px rgb(106, 200, 255, 0.8);
-    }
-    .margin {
-        @apply mx-8
-   xs:ml-16;
-    }
-    .padding {
-        @apply px-44 2xl:px-24 xl:px-10 xs:px-6;
-    }
-
-    .custom-react-select > input:placeholder-shown {
-        @apply dark:text-[#a1a1a1];
-    }
-    .custom-react-select > div:nth-child(3) {
-        @apply dark:bg-darkbg dark:text-bg;
-    }
-    .custom-react-select > div:nth-child(3) div {
-        @apply dark:bg-transparent  dark:text-bg;
-    }
-
-    .custom-react-select > div:nth-child(4) {
-        @apply dark:bg-darkbg dark:text-bg;
-    }
-    .dark .custom-react-select > div:nth-child(4) {
-        box-shadow: 0 0 4px #ffffff50;
-    }
-    .custom-react-select > div:nth-child(4) > div > div {
-        @apply dark:bg-darkbg;
-    }
-    .carousel .control-dots .dot.selected {
-    }
+::-webkit-scrollbar-thumb {
+  background: #344054;
+  border-radius: 0.5rem;
 }
-:is(.dark) #react-doc-viewer #header-bar #file-name {
-    color: rgb(255 255 255);
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
-/* Account setting */

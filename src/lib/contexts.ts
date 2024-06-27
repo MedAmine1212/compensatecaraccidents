@@ -5,6 +5,6 @@ type DarkContextType = {
     switchTheme: () => void
 }
 export const ThemeContext = createContext<DarkContextType>({
-    isDarkMode: true,
+    isDarkMode: false,
     switchTheme: () => {},
 })

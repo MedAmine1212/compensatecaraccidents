@@ -25,7 +25,13 @@ module.exports = {
       colors: {
         "darkbg": "#101828",
         "primary": "#194185",
-        "subcolor": "#667085"
+        "darkblue": "#162A55",
+        "lightblue": "#1570EF",
+        "subcolor": "#667085",
+        "percentage": "#344054",
+        "darkanswer":"#1D2939",
+        "lightanswer": "#F5F5F5",
+        "lightanswerhover": "#C4C4C4",
 
       },
       fontFamily: {

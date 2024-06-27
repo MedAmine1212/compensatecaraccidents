@@ -17,7 +17,7 @@ const Layout = ({ children }: Props) => {
                 >
                     <ToastContainer theme={isDarkMode ? 'dark' : 'light'} />
 
-                    <div className="flex h-[100svh] w-screen flex-col transition-all duration-300 dark:bg-darkbg bg-white">
+                    <div className="flex h-[100vh] w-screen flex-col transition-all duration-300 dark:bg-darkbg bg-white">
                         {children}
                     </div>
             </div>
