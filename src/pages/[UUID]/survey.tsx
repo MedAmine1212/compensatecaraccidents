@@ -16,6 +16,7 @@ import PhoneNumberForm from "@/components/PhoneNumberForm";
 import {toast} from "react-toastify";
 import {BeatLoader} from "react-spinners";
 import {ThemeContext} from "@/lib/contexts";
+import StartButton from "@/components/StartButton";
 const override: CSSProperties = {
     display: "block",
     margin: "0 auto",
@@ -38,11 +39,48 @@ const Survey = ({client}) => {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [forms, setForms] = useState<Form[]>([]);
     const [ended, setEnded] = useState<boolean>(false);
+    const [error, setError] = useState<boolean>(false);
+    const [isValid, setIsValid] = useState<boolean>(false);
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phonePattern = /^(?:\+1[-.\s]?)?([2-9][0-9]{2})[-.\s]?([2-9][0-9]{2})[-.\s]?([0-9]{4})$/;
     const { isDarkMode } = useContext(ThemeContext)
-    const submitForm = () => {
+    const getRandomNumber = () => {
+        return Math.floor(10000000 + Math.random() * 90000000);
+    };
+    const submitForm = async () => {
         setIsSubmitting(true)
+        const customField: { [key: string]: string } = {};
+        questions.forEach(question => {
+            if (question.selected && question.selected.answer) {
+                customField[question.key] = question.selected.answer;
+            }
+        });
+        const tags = `CarComp${firstName}${lastName}${client[16]}${getRandomNumber()}${UUID}`
+        const payload = {
+            email,
+            phone: phoneNumber,
+            firstName,
+            lastName,
+            customField,
+            tags: [tags],
+            title: client[0],
+        }
+        const result = await fetch('/api/submitGoHighLevel', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json, text/plain, */*',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                payload,
+                token: client[12]
+            }),
+        })
+        if(!result.ok) {
+            setError(true)
+        } else {
+            terminate(true, true)
+        }
     }
     const validateForm = () =>  {
         const current = forms.find(form => form.id === currentQuestionId)?.name;
@@ -94,15 +132,23 @@ const Survey = ({client}) => {
             setCurrentQuestionId(currentQuestionId - 1);
             setIsBackClicked(true);
         } else {
-            terminate(false);
+            terminate(false, true);
         }
     };
 
-    const terminate = (ended: boolean) => {
+    const terminate = (ended: boolean, valid:boolean) => {
         if (!ended) {
             router.replace(`/${UUID}`);
         } else {
-            setCompensationAmount(null)
+            if(!valid) {
+                setCompensationAmount(null)
+                setFirstName("")
+                setLastName("")
+                setEmail("")
+                setPhoneNumber("");
+            }
+            setIsValid(valid);
+            setIsSubmitting(false);
             setEnded(true);
             setQuestions([]);
             setPercentage(0);
@@ -137,9 +183,20 @@ const Survey = ({client}) => {
 
     return (
         <>
-            {isSubmitting ? (
-                <div className="flex flex-col justify-center h-full w-full">
-                    <div className="mx-auto flext justify-center">
+            {error ? (
+                    <div className="flex flex-col justify-center h-full w-full">
+                        <div className="flex mx-auto w-2/3 text-center mb-7 mt-3 text-2xl sm:text-lg dark:text-white justify-center">
+                            Oops! there was an error submitting the form
+                        </div>
+                        <div className="mx-auto w-48 flext justify-center">
+                            <StartButton title={"Try again!"}/>
+                        </div>
+
+                    </div>
+                ) :
+                isSubmitting ? (
+                    <div className="flex flex-col justify-center h-full w-full">
+                        <div className="mx-auto flext justify-center">
                         <BeatLoader
                             color={isDarkMode ? "#ffffff" : "#000"}
                             cssOverride={override}
@@ -221,7 +278,7 @@ const Survey = ({client}) => {
                 </div>
             ) : (
                 ended && (
-                    <EndSurvey compensation={compensationAmount} name={null}/>
+                    <EndSurvey compensation={compensationAmount} isValid={isValid} name={`${firstName} ${lastName}`} email={email}/>
                 )
             )}
         </>
@@ -237,6 +294,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
     const UUID = context.params.UUID.toString()
     try {
+        // @ts-ignore
         const auth = new google.auth.GoogleAuth({
             credentials: {
                 client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
@@ -254,9 +312,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
         const rows = response.data.values;
         if (rows && rows.length) {
-            console.log("'" + UUID + "'")
             const client = rows.find((row: any) => row[22] == UUID);
-            console.log(client)
             if (client) {
                 return {
                     props: {

@@ -2,41 +2,42 @@
   "questions": [
   {
     "id": 1,
+    "key": "how_were_you_hurt",
     "question": "How were you hurt?",
     "description": "Different types of accidents can lead to different compensation amounts. If you were in a recent automobile accident you are likely entitled to a higher settlement. The calculator will use this to maximize your claim estimate.",
     "type": "grid",
     "answers": [
       {
         "id": 1,
-        "answer": "Automobile accident",
+        "answer": "Automobile Accident",
         "icon": "car",
         "terminate": false,
         "compensationAmount": "165,306"
       },
       {
         "id": 2,
-        "answer": "Pedestrian or bicycle accident",
+        "answer": "Pedestrian or Bicycle Accident",
         "icon": "bicycle",
         "terminate": false,
         "compensationAmount": "165,306"
       },
       {
         "id": 3,
-        "answer": "Truck accident",
+        "answer": "Truck Accident",
         "icon": "truck",
         "terminate": false,
         "compensationAmount": "165,306"
       },
       {
         "id": 4,
-        "answer": "Motorcycle accident",
+        "answer": "Motorcycle Accident",
         "icon": "motorcycle",
         "terminate": false,
         "compensationAmount": "165,306"
       },
       {
         "id": 5,
-        "answer": "Accident or injury at work",
+        "answer": "Accident or Injury at Work",
         "icon": "accident",
         "terminate": false,
         "compensationAmount": "165,306"
@@ -50,14 +51,14 @@
       },
       {
         "id": 7,
-        "answer": "Fall or slip",
+        "answer": "Fall or Slip",
         "icon": "fall",
         "terminate": false,
         "compensationAmount": "165,306"
       },
       {
         "id": 8,
-        "answer": "Other accident or injury",
+        "answer": "Other Injury or Accident",
         "icon": "other",
         "terminate": false,
         "compensationAmount": "165,306"
@@ -67,6 +68,7 @@
   {
     "id": 2,
     "question": "Did you have to go to the doctor?",
+    "key": "did_you_have_to_go_to_the_doctor",
     "description": "Medical visits can significantly impact your settlement value. Let us know if you sought treatment from your accident.",
     "type": "grid",
     "answers": [
@@ -87,6 +89,7 @@
   {
     "id": 3,
     "question": "Are you currently represented by an attorney?",
+    "key": "are_you_currently_represented_by_an_attorney",
     "description": "Having legal representation can change your options. Tell us if you already have a lawyer on your side.",
     "type": "grid",
     "answers": [
@@ -107,6 +110,7 @@
   {
     "id": 4,
     "question": "Were you at fault?",
+    "key": "were_you_at_fault",
     "description": "You can be honest here. Determining fault is the best way to calculate settlement amounts. We need to know your perspective of the incident.",
     "type": "grid",
     "answers": [
@@ -127,6 +131,7 @@
   {
     "id": 5,
     "question": "When did this accident happen?",
+    "key": "when_did_this_accident_happen",
     "description": "The more recent your accident, the more likely you can achieve a higher settlement. If you've been in an accident, don't delay in getting help.",
     "type": "col",
     "answers": [

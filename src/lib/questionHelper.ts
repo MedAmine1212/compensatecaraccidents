@@ -14,6 +14,7 @@
         description: number;
         "type": string,
         answers: Answer[]
+        key: string
         selected: Answer
     }
     export interface DescribeValues {

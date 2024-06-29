@@ -6,12 +6,12 @@ type Props = {
     selected:number | undefined
     setCompensation: (amount: string) => void
     answerQuestion: (answer: Answer, questionId: number) => void
-    terminate: (ended: boolean) => void
+    terminate: (ended: boolean, valid: boolean) => void
 }
 const QuestionComponent: FC<Props> = ({question, selected, setCompensation, terminate, answerQuestion}: Props) => {
     const trigger = (answer) => {
         if(answer.terminate){
-            terminate(true);
+            terminate(true, false);
         } else {
             if(answer.compensationAmount) {
                 setCompensation(answer.compensationAmount)
