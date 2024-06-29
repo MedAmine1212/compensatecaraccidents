@@ -35,7 +35,7 @@ const Percentage: FC<Props> = ({ percentage }) => {
                 />
             </svg>
             <div className="absolute flex items-center justify-center">
-                <span className={`sm:text-sm ${percentage == "0" ? "dark:text-subcolor text-white" : "text-percentage"}`}>{percentage}%</span>
+                <span className={`sm:text-sm ${percentage == "0" ? "dark:text-subcolor text-white" : "dark:text-percentage text-white"}`}>{percentage}%</span>
             </div>
         </div>
     );

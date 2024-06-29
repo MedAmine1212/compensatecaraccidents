@@ -1,13 +1,14 @@
 import { FaArrowRight } from "react-icons/fa6";
 import {FC, useEffect, useRef, useState} from "react";
 import { motion } from "framer-motion";
-import router from 'next/router'
+import router, {useRouter} from 'next/router'
 
 type Props = {
     title: string
 }
 const StartButton : FC<Props> = ({title}: Props) =>  {
-
+    const router = useRouter();
+    const UUID = router.query.UUID;
     const [isAnimating, setIsAnimating] = useState(false);
     const [buttonWidth, setButtonWidth] = useState(0);
     const buttonRef = useRef(null);
@@ -20,8 +21,9 @@ const StartButton : FC<Props> = ({title}: Props) =>  {
         e.preventDefault();
         setIsAnimating(true);
         setTimeout(() => {
-            if(router.pathname === '/survey')  window.location.reload();
-            else router.push('/survey')
+            console.log(router.pathname)
+            if(router.pathname === `/[UUID]/survey`)  router.reload();
+            else router.push(`/${UUID}/survey`);
         }, 300);
     };
     return (

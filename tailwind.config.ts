@@ -24,10 +24,13 @@ module.exports = {
       },
       colors: {
         "darkbg": "#101828",
+        "lightbg": "#1D2939",
         "primary": "#194185",
         "darkblue": "#162A55",
         "lightblue": "#1570EF",
         "subcolor": "#667085",
+        "darkgrey": "#475467",
+        "lightgrey": "#D0D5DD",
         "percentage": "#344054",
         "darkanswer":"#1D2939",
         "lightanswer": "#F5F5F5",

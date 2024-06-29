@@ -34,7 +34,7 @@ const QuestionComponent: FC<Props> = ({question, selected, setCompensation, term
                         return (
                             <div key={index} onClick={() => {
                                 trigger(answer)
-                            }} className={`flex p-4 ${selected === answer.id ? "bg-primary" : "bg-darkanswer hover:border-lightblue cursor-pointer hover:bg-darkblue"} border-[1px] border-transparent rounded-xl justify-between w-full gap-2 items-center`}>
+                            }} className={`flex p-4 ${selected === answer.id ? "bg-primary" : "bg-darkanswer hover:border-lightblue  hover:bg-darkblue"} cursor-pointer border-[1px] border-transparent rounded-xl justify-between w-full gap-2 items-center`}>
                                 <div className="flex flex-col justify-start gap-2">
                                 {answer.icon && (
                                     <Image src={`/answers/${answer.icon}.svg`} height={40} width={40} alt={answer.icon}/>
