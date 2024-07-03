@@ -1,21 +1,28 @@
 import Image from "next/image";
-import {FC} from "react";
+import {FC, useEffect, useState} from "react";
 import {Answer, Question} from "@/lib/questionHelper";
 type Props = {
     question: Question
     selected:number | undefined
+    compensation:string,
     setCompensation: (amount: string) => void
     answerQuestion: (answer: Answer, questionId: number) => void
     terminate: (ended: boolean, valid: boolean) => void
 }
-const QuestionComponent: FC<Props> = ({question, selected, setCompensation, terminate, answerQuestion}: Props) => {
+const QuestionComponent: FC<Props> = ({question, selected, compensation, setCompensation, terminate, answerQuestion}: Props) => {
     const trigger = (answer) => {
         if(answer.terminate){
             terminate(true, false);
         } else {
-            if(answer.compensationAmount) {
-                setCompensation(answer.compensationAmount)
+            console.log(answer)
+            if(answer.customCompensation) {
+                setCompensation("custom");
+                console.log("here")
             }
+            else if(answer.compensationAmountMax && answer.compensationAmountMin) {
+                setCompensation(answer.compensationAmountMin + " - " + answer.compensationAmountMax);
+            }
+            question.originalCompensation = compensation;
             answerQuestion(answer, question.id);
         }
     }

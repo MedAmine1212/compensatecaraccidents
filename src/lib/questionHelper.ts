@@ -5,7 +5,10 @@
         answer: string;
         icon: string;
         terminate: boolean;
-        compensationAmount?: string
+        compensationAmountMin?: string
+        compensationAmountMax?: string
+        customCompensation?: boolean
+        compensationEffect?: string
 
     }
     export interface Question {
@@ -16,6 +19,7 @@
         answers: Answer[]
         key: string
         selected: Answer
+        originalCompensation?: string
     }
     export interface DescribeValues {
         description: string;

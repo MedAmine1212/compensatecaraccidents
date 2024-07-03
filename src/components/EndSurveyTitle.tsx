@@ -26,7 +26,7 @@ const EndSurveyTitle: FC<Props> = ({name, compensation}: Props) => {
                         <div className="text-2xl w-full text-white sm:text-lg">Compensation amounts:
                         </div>
                         <div
-                            className={` text-4xl text-white`}>${compensation}</div>
+                            className={` text-4xl text-white`}>{compensation}</div>
                     </div>
                 </>
             )}

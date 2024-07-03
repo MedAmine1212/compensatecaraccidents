@@ -31,7 +31,7 @@ const Survey = ({client}) => {
 
     const router = useRouter();
     const {UUID} = router.query;
-    const [compensationAmount, setCompensationAmount] = useState<string>("0");
+    const [compensationAmount, setCompensationAmount] = useState<string>("$0");
     const [percentage, setPercentage] = useState<number>(0);
     const [currentQuestionId, setCurrentQuestionId] = useState<number>(1);
     const [isBackClicked, setIsBackClicked] = useState<boolean>(false);
@@ -129,6 +129,9 @@ const Survey = ({client}) => {
 
     const backStep = () => {
         if (currentQuestionId > 1) {
+            const originalAmount = questions.find(question => question.id === currentQuestionId-1)?.originalCompensation;
+            if(originalAmount && currentQuestionId != 2 && compensationAmount != "custom")
+                setCompensationAmount(originalAmount)
             setCurrentQuestionId(currentQuestionId - 1);
             setIsBackClicked(true);
         } else {
@@ -155,8 +158,25 @@ const Survey = ({client}) => {
             setCurrentQuestionId(1);
         }
     };
+    const calculateCompensation = (percentage: string, comp: string) => {
+        if(compensationAmount === "0" || compensationAmount === "custom" || !percentage || !comp) return;
+        let min = parseInt(comp.split(" - ")[0].replace("$", "").replace(",", ""));
+        let max = parseInt(comp.split(" - ")[1].replace("$", "").replace(",", ""));
+
+        let sign = percentage[0];
+        if(sign === "+") {
+            min += Math.round((parseInt(percentage.slice(1).replace("%", "")) / 100) * min);
+            max += Math.round((parseInt(percentage.slice(1).replace("%", "")) / 100) * max);
+        } else {
+            min -= Math.round((parseInt(percentage.slice(1).replace("%", "")) / 100) * min);
+            max -= Math.round((parseInt(percentage.slice(1).replace("%", "")) / 100) * max);
+        }
+        setCompensationAmount("$"+Math.floor(min).toLocaleString()+ " - $"+Math.floor(max).toLocaleString());
+    }
     const answerQuestion = (answer: Answer, questionId: number) => {
         setIsBackClicked(false);
+
+        calculateCompensation( answer.compensationEffect || "", compensationAmount);
         const newQuestions = questions.map((question) => {
             if (question.id === questionId) {
                 question.selected = answer;
@@ -228,6 +248,7 @@ const Survey = ({client}) => {
                                     <QuestionComponent
                                         selected={questions.find((question) => question.id === currentQuestionId)?.selected?.id}
                                         setCompensation={setCompensationAmount}
+                                        compensation={compensationAmount}
                                         answerQuestion={answerQuestion}
                                         terminate={terminate}
                                         question={questions.find((question) => question.id === currentQuestionId) as Question}
@@ -264,6 +285,7 @@ const Survey = ({client}) => {
                             } else {
                                     setIsBackClicked(false);
                                     setCurrentQuestionId(currentQuestionId + 1);
+                                     calculateCompensation(questions.find(question => question.id === currentQuestionId)?.selected.compensationEffect || "", compensationAmount);
                             }}}
                             className={`bg-primary hover:bg-opacity-70 justify-center w-fit gap-3 flex rounded-[100px] ${!isBackClicked && currentQuestionId <= questions.length && "hidden"} ${
                                 questions.length === currentQuestionId && "bg-opacity-40"

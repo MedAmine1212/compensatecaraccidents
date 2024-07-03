@@ -12,56 +12,63 @@
         "answer": "Automobile Accident",
         "icon": "car",
         "terminate": false,
-        "compensationAmount": "165,306"
+        "compensationAmountMin": "70,000",
+        "compensationAmountMax": "145,000"
       },
       {
         "id": 2,
         "answer": "Pedestrian or Bicycle Accident",
         "icon": "bicycle",
         "terminate": false,
-        "compensationAmount": "165,306"
+        "compensationAmountMin": "40,000",
+        "compensationAmountMax": "60,000"
       },
       {
         "id": 3,
         "answer": "Truck Accident",
         "icon": "truck",
         "terminate": false,
-        "compensationAmount": "165,306"
+        "compensationAmountMin": "60,000",
+        "compensationAmountMax": "90,000"
       },
       {
         "id": 4,
         "answer": "Motorcycle Accident",
         "icon": "motorcycle",
         "terminate": false,
-        "compensationAmount": "165,306"
+        "compensationAmountMin": "70,000",
+        "compensationAmountMax": "100,000"
       },
       {
         "id": 5,
         "answer": "Accident or Injury at Work",
         "icon": "accident",
         "terminate": false,
-        "compensationAmount": "165,306"
+        "compensationAmountMin": "25,000",
+        "compensationAmountMax": "70,000"
       },
       {
         "id": 6,
         "answer": "Medical Negligence",
         "icon": "medical",
         "terminate": false,
-        "compensationAmount": "165,306"
+        "compensationAmountMin": "220,000",
+        "compensationAmountMax": "350,000"
       },
       {
         "id": 7,
         "answer": "Fall or Slip",
         "icon": "fall",
         "terminate": false,
-        "compensationAmount": "165,306"
+        "compensationAmountMin": "5,000",
+        "compensationAmountMax": "30,000"
       },
       {
         "id": 8,
         "answer": "Other Injury or Accident",
         "icon": "other",
         "terminate": false,
-        "compensationAmount": "165,306"
+        "customCompensation": true
       }
     ]
   },
@@ -71,18 +78,21 @@
     "key": "did_you_have_to_go_to_the_doctor",
     "description": "Medical visits can significantly impact your settlement value. Let us know if you sought treatment from your accident.",
     "type": "grid",
+    "originalCompensation": "",
     "answers": [
       {
         "id": 1,
         "answer": "Yes",
         "icon": "doctor-icon",
-        "terminate": false
+        "terminate": false,
+        "compensationEffect": "+50%"
       },
       {
         "id": 2,
         "answer": "No",
         "icon": "no-hand-icon",
-        "terminate": false
+        "terminate": false,
+        "compensationEffect": "-30%"
       }
     ]
   },
@@ -92,6 +102,7 @@
     "key": "are_you_currently_represented_by_an_attorney",
     "description": "Having legal representation can change your options. Tell us if you already have a lawyer on your side.",
     "type": "grid",
+    "originalCompensation": "",
     "answers": [
       {
         "id": 1,
@@ -103,7 +114,8 @@
         "id": 2,
         "answer": "No",
         "icon": "no-hand-icon",
-        "terminate": false
+        "terminate": false,
+        "compensationEffect": "+10%"
       }
     ]
   },
@@ -113,6 +125,7 @@
     "key": "were_you_at_fault",
     "description": "You can be honest here. Determining fault is the best way to calculate settlement amounts. We need to know your perspective of the incident.",
     "type": "grid",
+    "originalCompensation": "",
     "answers": [
       {
         "id": 1,
@@ -124,7 +137,8 @@
         "id": 2,
         "answer": "No",
         "icon": "no-fault-icon",
-        "terminate": false
+        "terminate": false,
+        "compensationEffect": "+15%"
       }
     ]
   },
@@ -134,34 +148,45 @@
     "key": "when_did_this_accident_happen",
     "description": "The more recent your accident, the more likely you can achieve a higher settlement. If you've been in an accident, don't delay in getting help.",
     "type": "col",
+    "originalCompensation": "",
     "answers": [
       {
         "id": 1,
         "answer": "Within 1 Week",
         "icon": null,
-        "terminate": false
+        "terminate": false,
+        "compensationEffect": "+20%"
       },
       {
         "id": 2,
-        "answer": "Within 1-3 Months",
+        "answer": "Within 1-3 months",
         "icon": null,
-        "terminate": false
+        "terminate": false,
+        "compensationEffect": "+10%"
       },
       {
         "id": 3,
-        "answer": "Within 1 Year",
+        "answer": "Within 4-6 months",
         "icon": null,
-        "terminate": false
+        "terminate": false,
+        "compensationEffect": "+10%"
       },
       {
         "id": 4,
+        "answer": "Within 1 Year",
+        "icon": null,
+        "terminate": false,
+        "compensationEffect": "5%"
+      },
+      {
+        "id": 5,
         "answer": "Within 2 Year",
         "icon": null,
         "terminate": true
       },
       {
-        "id": 5,
-        "answer": "Longer Than 2 Years",
+        "id": 6,
+        "answer": "Longer than 2 Years",
         "icon": null,
         "terminate": true
       }
